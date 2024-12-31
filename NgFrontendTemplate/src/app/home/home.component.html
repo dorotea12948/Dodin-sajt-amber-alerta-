@@ -1,18 +1,11 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amber Alert Srbija</title>
-    <link rel="stylesheet" href="izgled.css" />
-    <script src="js.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   </head>
-  <body onload="startLoad()">
+  <body>
     <header>
       <h1>Amber Alert Srbija</h1>
     </header>
@@ -43,11 +36,14 @@
         <label for="image">Slika ili priblizna skica nestale osobe:</label>
         <input type="file" id="image" name="image" accept="image/*" required />
 
-        <button type="submit" onclick="savePerson()">Pošalji prijavu</button>
+        <button type="submit" onclick="newPerson()">Pošalji prijavu</button>
       </form>
-      <button><a href="strana sa nestalima.html">Lista nestalih osoba </a></button>
-      <button onclick="clearStorage()">Ocisti storage</button>
+      <button (click)="toList()">
+        <a [routerLink]="['/missing']">Lista nestalih osoba </a>
+      </button>
     </div>
-    <div id="map" style="width: 100%; height: 500px"></div>
+    <div id="map" style="width: 100%; height: 500px">
+      <app-map></app-map>
+    </div>
   </body>
 </html>

@@ -90,7 +90,7 @@ app.options("*", cors());
 
 let i = 0;
 
-app.get("/api/getrecord", upload.fields([{ name: "Id" }]), (req, res) => {
+app.post("/api/getrecord", upload.fields([{ name: "Id" }]), (req, res) => {
   handleDisconnect();
   var returnValue;
   userConnection.query(
@@ -107,11 +107,11 @@ app.get("/api/getrecord", upload.fields([{ name: "Id" }]), (req, res) => {
   userConnection.end();
 });
 
-app.get("/api/getrecords", upload.fields([{ name: "name" }]), (req, res) => {
+app.get("/api/getrecords", (req, res) => {
   handleDisconnect();
   var returnValue;
   userConnection.query(
-    `select * from missingperson where FirstName LIKE '%${req.body.name}%'`,
+    `select * from missingperson`,
     function (err, result, fields) {
       if (err) throw err;
       else {
